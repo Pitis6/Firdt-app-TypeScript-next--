@@ -1,6 +1,6 @@
 import { type } from "os";
 import type { FunctionComponent, FC } from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 // export const RandomFox = () => {
@@ -14,13 +14,14 @@ type Props = {image: string}
 export const RandomFox = ({image}: Props): JSX.Element => {
 
   const node = useRef<HTMLImageElement>(null);
+  const [src, setsrc] = useState("")
 
   useEffect(()=>{
 
     const observer = new IntersectionObserver((entries)=>{
         entries.forEach((entrie)=>{
           if (entrie.isIntersecting){
-            console.log("hey")
+            setsrc(image)
           }
         })
     })
@@ -30,7 +31,7 @@ export const RandomFox = ({image}: Props): JSX.Element => {
     return ()=>{
       observer.disconnect()
     }
-  },[])
+  },[src])
 
 
   return <img ref={node} width={320} height='auto' src={image} className="rounded" />;
