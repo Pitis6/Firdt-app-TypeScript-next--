@@ -27,9 +27,14 @@ export default function Home() {
   };
 
   return (
-    <main className="text-3xl font-bold underline">
+    <main className="text-3xl font-bold underline flex-col justify-center">
       <h1>Hello Platzi!</h1>
-      <button onClick={addNewFox}>Add new fox</button>
+      <button
+        onClick={addNewFox}
+        className="border rounded-xl p-2 border-black bg-red-400	"
+      >
+        Add new fox
+      </button>
       {images.map(({ id, url }) => (
         <div key={id} className="p-4">
           <RandomFox image={url} />
